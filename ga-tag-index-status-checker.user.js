@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GA Tag & Index Status Checker
 // @namespace    http://tampermonkey.net/
-// @version      1.4
+// @version      1.5
 // @description  Wyświetla tagi Google Analytics (UA-, G-, GTM-) oraz status indeksowania strony (index/noindex)
 // @author       bkmiecik
 // @match        *://*/*
