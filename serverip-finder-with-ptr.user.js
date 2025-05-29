@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         Server IP Finder with PTR
+// @name         Server IP Finder with PTR (Dark Mode)
 // @namespace    http://tampermonkey.net/
-// @version      1.5
-// @description  Pokazuje IP serwera i PTR domeny aktualnej strony (z DNS Google)
+// @version      1.6
+// @description  Pokazuje IP serwera i PTR domeny aktualnej strony (z DNS Google) w ciemnym motywie
 // @author       bkmiecik
 // @match        *://*/*
 // @grant        none
@@ -25,12 +25,10 @@
         }
     } catch {}
 
-    // Zamiana IPv4 na PTR (in-addr.arpa)
     function ipToPtr(ip) {
         return ip.split('.').reverse().join('.') + '.in-addr.arpa';
     }
 
-    // Pobierz PTR dla pojedynczego IP, zwraca Promise<string>
     function fetchPtr(ip) {
         const ptrName = ipToPtr(ip);
         return fetch(`https://dns.google/resolve?name=${ptrName}&type=PTR`)
@@ -56,7 +54,6 @@
             }
             if (ips.length === 0) ips = ['Brak rekordu A'];
 
-            // Dla każdego IP pobierz PTR (lub pusty string dla braku IP)
             let ipWithPtrList = [];
             if (ips[0] !== 'Brak rekordu A') {
                 ipWithPtrList = await Promise.all(
@@ -83,17 +80,17 @@
             position: 'fixed',
             top: pos.top + 'px',
             left: pos.left + 'px',
-            backgroundColor: 'white',
-            color: '#222',
+            backgroundColor: '#1e1e1e',
+            color: '#eee',
             padding: '6px 10px',
             fontFamily: 'monospace',
             fontSize: '11px',
-            border: '1.5px solid #ccc',
+            border: '1.5px solid #444',
             borderRadius: '6px',
             cursor: 'move',
             zIndex: '99999',
             userSelect: 'none',
-            boxShadow: '0 0 6px rgba(0, 0, 0, 0.1)',
+            boxShadow: '0 0 8px rgba(255, 255, 255, 0.15)',
             maxWidth: '280px',
             whiteSpace: 'nowrap',
             overflow: 'hidden',
