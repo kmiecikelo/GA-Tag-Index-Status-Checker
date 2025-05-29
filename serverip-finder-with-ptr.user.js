@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Server IP Finder with PTR (Dark Mode)
 // @namespace    http://tampermonkey.net/
-// @version      1.6
+// @version      1.7
 // @description  Pokazuje IP serwera i PTR domeny aktualnej strony (z DNS Google) w ciemnym motywie
 // @author       bkmiecik
 // @match        *://*/*
@@ -15,6 +15,7 @@
     const storageKey = 'serverIpFinderPosition';
 
     let pos = { left: 80, top: 80 };
+
     try {
         const saved = localStorage.getItem(storageKey);
         if (saved) {
@@ -22,6 +23,16 @@
             if (typeof parsed.left === 'number' && typeof parsed.top === 'number') {
                 pos = parsed;
             }
+        } else {
+            // ustaw startową pozycję w prawym dolnym rogu
+            const barWidth = 280;  // maxWidth belki
+            const barHeight = 30;  // przybliżona wysokość belki
+            pos.left = window.innerWidth - 80 - barWidth;
+            pos.top = window.innerHeight - 80 - barHeight;
+
+            // zabezpieczenia, jeśli okno jest za małe
+            if (pos.left < 0) pos.left = 0;
+            if (pos.top < 0) pos.top = 0;
         }
     } catch {}
 
