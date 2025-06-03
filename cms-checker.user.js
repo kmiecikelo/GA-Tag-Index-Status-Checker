@@ -123,12 +123,7 @@
     overlay.style.whiteSpace = "nowrap";
     overlay.style.overflow = "hidden";
     overlay.style.textOverflow = "ellipsis";
+    overlay.style.opacity = "0.5";
 
     document.body.appendChild(overlay);
-
-    // Automatyczne ukrywanie po 10 sekundach (opcjonalne)
-    setTimeout(() => {
-        overlay.style.opacity = "0.5";
-        overlay.style.transition = "opacity 0.5s ease";
-    }, 10000);
 })();
