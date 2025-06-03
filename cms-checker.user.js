@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         CMS Checker Overlay
 // @namespace    http://tampermonkey.net/
-// @version      1.1
+// @version      1.2
 // @description  Wykrywa popularne CMS-y i pokazuje w lewym dolnym rogu
 // @author       bkmiecik
 // @match        *://*/*
